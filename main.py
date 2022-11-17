@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import pymongo
 app = Flask(__name__)
 client = pymongo.MongoClient("localhost",27017)
+
 pond = {
     'name': "alpha", 
     'location': "jakarta", 
