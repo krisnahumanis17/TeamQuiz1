@@ -15,3 +15,15 @@ def regis():
     if result:
         return True
     return False
+
+@app.route("/api/v1/aktifasi/<pondname>",methods=["POST"])
+def activation(pondname):
+    data=db.activation.find_one({"name":pondname})
+    getdata=request.form()
+    data["name"]=getdata["name"]
+    data["ikan"]=getdata["ikan"]
+    data["jumlah"]=getdata["jumlah"]
+    data["ketinggian"]=getdata["ketinggian"]
+    data["isactive"]=getdata["isactive"]
+    data["tanggal"]=getdata["tanggal"]
+    db.activation.update_one({"name":pondname}, {"$set":data})
